@@ -21,6 +21,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 # Set the working directory in the runtime container
 WORKDIR /app
 
+# Create a new user to run the app
+RUN useradd -m myuser
+USER myuser
+
 # Copy the output from the build stage to the runtime container
 COPY --from=build /out .
 
